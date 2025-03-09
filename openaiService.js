@@ -1,5 +1,5 @@
-const OpenAI = require("openai");
-const pLimit = require('p-limit');
+import pLimit from 'p-limit'; // Import p-limit
+import OpenAI from 'openai';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -21,13 +21,9 @@ async function generateQuestion(topic) {
     }));
     return response.choices[0].message.content.trim();
   } catch (error) {
-    if (error.response && error.response.status === 429) {
-      console.error("Rate limit exceeded. Please try again later.");
-    } else {
-      console.error("Error generating question:", error);
-    }
+    console.error("Error generating question:", error);
     throw error;
   }
 }
 
-module.exports = { generateQuestion };
+export default { generateQuestion };

@@ -1,7 +1,7 @@
  const express = require("express");
 const router = express.Router();
 const Question = require("../models/Question");
-const { generateQuestion } = require("../openaiService");
+const { generateQuestion } = require("../openaiService").default;
 
 // Generate and Save Question
 router.post("/generate", async (req, res) => {
