@@ -11,9 +11,11 @@
   "license": "ISC",
   "description": "��#\u0000 \u0000s\u0000u\u0000m\u0000a\u0000n\u0000a\u0000\r\u0000 \u0000\r\u0000 \u0000\r\u0000 \u0000",
   "dependencies": {
+    "axios": "^1.8.4",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "googleapis": "^146.0.0",
     "mongoose": "^8.12.1",
     "openai": "^4.86.2",
     "p-limit": "^6.2.0"

@@ -8,6 +8,25 @@ const openai = new OpenAI({
 
 const limit = pLimit(1); 
 
+async function generateNotes(text) {
+  try {
+    const response = await limit(() => openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "user",
+          content: `Generate notes on the text: ${text}. Give consise notes covering important points`,
+        },
+      ],
+      max_tokens: 100,
+    }));
+    return response.choices[0].message.content.trim();
+  } catch (error) {
+    console.error("Error generating question:", error);
+    throw error;
+  }
+}
+
 async function generateQuestion(topic) {
   try {
     const response = await limit(() => openai.chat.completions.create({
