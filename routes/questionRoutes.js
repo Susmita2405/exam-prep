@@ -46,8 +46,8 @@ const openaiService = require("../openaiService").default;
 // Generate and Save Single MCQ Question
 router.post("/generate-mcq", async (req, res) => {
   try {
-    const { topic } = req.body;
-    const questionText = await openaiService.generateMCQQuestion(topic);
+    const { topic, classLevel } = req.body;
+    const questionText = await openaiService.generateMCQQuestion(topic, classLevel);
     const lines = questionText.split("\n").filter(line => line.trim());
     
     // Extract question and options
@@ -60,6 +60,7 @@ router.post("/generate-mcq", async (req, res) => {
 
     const questionObj = new Question({
       topic,
+      classLevel,
       question,
       options,
       correctAnswer,

@@ -76,14 +76,14 @@ async function generateNotes(text) {
   }
 }
 
-async function generateMCQQuestion(topic) {
+async function generateMCQQuestion(topic, classLevel) {
   try {
     const response = await limit(() => openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "user",
-          content: `Generate a multiple-choice question on ${topic}. Provide four options and indicate the correct answer.`,
+          content: `Generate a multiple-choice question on ${topic} for class ${classLevel}. Provide four options and indicate the correct answer.`,
         },
       ],
       max_tokens: 200,
